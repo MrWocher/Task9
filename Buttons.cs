@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class Buttons : MonoBehaviour
 {
+    private int _heal = 10;
+    private int _damage = 10;
+
     public void OnHeal()
     {
-        SliderHpView.OnHealedPlayer(10);
+        SliderHpView.OnHealedPlayer(_heal);
     }
 
     public void OnGamage()
     {
-        SliderHpView.OnDamagePlayer(10);
+        SliderHpView.OnDamagePlayer(_damage);
     }
 }
+
