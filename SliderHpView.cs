@@ -9,6 +9,8 @@ public class SliderHpView : MonoBehaviour
     private static event Action<int> OnHealed;
     private static event Action<int> OnDamaged;
     private static event Action OnStartedHpChangeCoroutine;
+
+    private float _sliderChangeSpeed = .25f;
  
     private int _maxHp;
     private int _currentHp
@@ -70,7 +72,7 @@ public class SliderHpView : MonoBehaviour
 
         while (_hpSlider.value != targetValue)
         {
-            _hpSlider.value = Mathf.MoveTowards(_hpSlider.value, targetValue, Time.fixedDeltaTime * 0.25f);
+            _hpSlider.value = Mathf.MoveTowards(_hpSlider.value, targetValue, Time.fixedDeltaTime * _sliderChangeSpeed);
             yield return waitForEndOfFrame;
         }
 
