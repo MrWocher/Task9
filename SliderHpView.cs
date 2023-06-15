@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,24 +5,19 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Slider))]
 public class SliderHpView : MonoBehaviour
 {
-    public static event Action<float, float> HpChanged;
+    [SerializeField] private PlayerParams playerParams;
 
     private Slider _slider;
     [SerializeField] private Text _txt;
 
-    private Coroutine _changeHpSlider;
-
     private float _sliderChangeSpeed = .25f;
+
+    private Coroutine _changeHpSlider;
 
     private void OnEnable()
     {
         _slider = GetComponent<Slider>();
-        HpChanged += StartChangeHpCoroutine;
-    }
-
-    public static void OnHpChanged(float _currentHp, float _maxHp)
-    {
-        HpChanged?.Invoke(_currentHp, _maxHp);
+        playerParams.HpChanged += StartChangeHpCoroutine;
     }
 
     private void StartChangeHpCoroutine(float _currentHp, float _maxHp)
